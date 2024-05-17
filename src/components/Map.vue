@@ -1,9 +1,14 @@
 <script setup lang="ts">
     import mapboxgl from "mapbox-gl";
     import { onMounted, ref } from "vue";
+    import neigbourhoods from '../../data/neigbourhoods.json';
+    import listings from '../../data/listings.json';
     // @ts-ignore
     import * as turf from '@turf/turf'
     import type { NeighbourhoodDTO } from "@/types/neighbourhood"
+
+    // (2) Importeer layers && (6) voeg de juiste layers toe
+
 
     const map = ref<mapboxgl.Map>();
     const neighbourhoods = ref<NeighbourhoodDTO[]>([]);
@@ -11,8 +16,7 @@
     const geojson = ref<string>("")
 
     onMounted(async () => {
-        const result = await fetch("https://localhost:7292/neighbourhoods/names");
-        neighbourhoods.value = await result.json() as NeighbourhoodDTO[];
+      neighbourhoods.value = neigbourhoods;
 
 
         mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
@@ -24,27 +28,32 @@
         })
 
         map.value.on("load", async () => {
-            const result = await fetch("https://localhost:7292/listings/coordinates");
-            geojson.value = await result.json();
+          geojson.value = listings;
 
-            //Voeg hier je source toe
-            
+          // (1) Voeg hier je source toe
 
-            // Voeg hier je layers toe
+
+
+          // (3) Voeg hier je layers toe & (7) Pas nog meer layers toe
+        })
+
+        // (5) Voeg hier clustering toe
+        map.value?.addSource("listings", {
+          type: "geojson",
+          data: geojson.value,
+          'cluster': true,
+          'clusterRadius': 50,
         })
     })
 
-    const onNeighbourhoodChange = async () => {
-        // Voeg hier je code toe
-        
-    }
-
     const boundsToNeighbourhood = (neighbourhood: string) => {
-        // Voeg hier je code toe
-        
+        // (9) Filter de features van de buurt
+
     }
 
-
+    const onNeighbourhoodChange = async () => {
+        // (4) Voeg hier je code toe + (8) Roep de boundsToNeighbourhood functie aan binnen onNeighbourhoodChange
+    }
 </script>
 
 <template>
