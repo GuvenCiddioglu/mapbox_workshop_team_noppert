@@ -1,5 +1,6 @@
 # mapbox-workshop
-Voordat we beginnen, moeten we de .env-file aanmaken en configureren met onze Mapbox API-sleutel. Volg deze stappen om aan de slag te gaan:
+Voordat we beginnen, moeten we de .env-file aanmaken en configureren met onze Mapbox API-key. Volg deze stappen om aan 
+de slag te gaan:
 
 ## Mapbox API-key
 
@@ -63,19 +64,20 @@ Om de kaart dynamisch bij te werken op basis van de geselecteerde buurt, moeten 
 
 Code snippet: 4
 ``` typescript
-// Haal de geselecteerde buurt en alle lijstopnames op
+// Haal de geselecteerde buurt en alle listings op
 const neighbourhood = selectedNeighbourhood.value
 const allListings = geojson.value;
 
-// Haal de bron op waar de lijstopnames zijn opgeslagen
+// Haal de source op waar de listings zijn opgeslagen
 const mapSource = map.value?.getSource("listings") as mapboxgl.GeoJSONSource
 
-// Haal de gegevens op voor de geselecteerde buurt van de server
-const result = await fetch(`https://localhost:7292/listings/neighbourhoods/${neighbourhood}`)
-const json = await result.json();
+// Haal de gegevens op voor de geselecteerde buurt
+const result = allListings?.features.filter((feature: Feature) => feature.properties && feature.properties.neighbourhood == neighbourhood) || []
 
 // Controleer of er een buurt is geselecteerd
 if (!neighbourhood) {
+    // Controlleer of allListings niet undifined is.
+    if(!allListings) return
     // Als er geen buurt is geselecteerd, verwijder dan het filter en laad alle listings
     map.value?.setFilter("neighbourhoods", null)
     mapSource.setData(allListings)
@@ -90,7 +92,10 @@ if (!neighbourhood) {
 
 // Pas het filter toe op de buurt en update de kaart met de gefilterde gegevens
 map.value?.setFilter("neighbourhoods", ["==", "name", neighbourhood])
-mapSource.setData(json);
+mapSource.setData({
+  type: "FeatureCollection",
+  features: result
+});
 ```
 
 ## Clustering
