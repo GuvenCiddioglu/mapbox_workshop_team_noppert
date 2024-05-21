@@ -3,6 +3,7 @@ import type { AnyLayer } from "mapbox-gl"
 export const neighbourhoodLayer: AnyLayer = {
     id: "neighbourhoods",
     type: "fill",
+    "source-layer": "Neighbourhood_Paris",
     source: "neighbourhoods",
     paint: {
         "fill-color": "#088",

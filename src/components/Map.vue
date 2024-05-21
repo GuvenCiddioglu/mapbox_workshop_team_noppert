@@ -9,8 +9,8 @@
     import type { NeighbourhoodDTO } from "@/types/neighbourhood"
 
     // (2) Importeer layers && (6) voeg de juiste layers toe
- // import eerst de juiste layers
- import { neighbourhoodLayer, airBnbLocationClusterLayer, airBnbLocationCountLayer, unclusterdListingLayer } from "@/mapbox/layers"
+    // import eerst de juiste layers
+    import { neighbourhoodLayer, airBnbLocationClusterLayer, airBnbLocationCountLayer, unclusterdListingLayer } from "@/mapbox/layers"
 
     const map = ref<mapboxgl.Map>();
     const neighbourhoods = ref<NeighbourhoodDTO[]>([]);
@@ -41,8 +41,8 @@
         })
 
         map.value?.addSource("neighbourhoods", {
-            type: "geojson",
-            data: "https://raw.githubusercontent.com/blackmad/neighborhoods/master/paris.geojson"
+            type: "vector",
+            url: "mapbox://username.clvgc35v20ntc1nlqicdpzzv5-89ayz"
         })
 
         // (3) Voeg hier je layers toe & (7) Pas nog meer layers toe
@@ -83,7 +83,7 @@
         };
 
         // Pas het filter toe op de buurt en update de kaart met de gefilterde gegevens
-        map.value?.setFilter("neighbourhoods", ["==", "name", neighbourhood])
+        map.value?.setFilter("neighbourhoods", ["==", "neighbourhood", neighbourhood])
         mapSource.setData({
           type: "FeatureCollection",
           features: result
@@ -99,7 +99,8 @@
     const boundsToNeighbourhood = (neighbourhood: string) => {
         // Filter de features van de buurt
         const filteredFeatures = map.value?.querySourceFeatures("neighbourhoods", {
-            filter: ["==", "name", neighbourhood],
+          sourceLayer: "Neighbourhood_Paris",
+          filter: ["==", "neighbourhood", neighbourhood],
         });
 
         // Controleer of er features zijn gevonden
