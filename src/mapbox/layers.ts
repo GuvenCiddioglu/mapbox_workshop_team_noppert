@@ -4,6 +4,7 @@ export const neighbourhoodLayer: AnyLayer = {
     id: "neighbourhoods",
     type: "fill",
     source: "neighbourhoods",
+    "source-layer": "Neighbourhood_Paris",
     paint: {
         "fill-color": "#088",
         "fill-opacity": 0.4,
@@ -14,7 +15,6 @@ export const listingLayer: AnyLayer = {
     id: "listings",
     type: "circle",
     source: "listings",
-    filter: ['!', ['has', 'point_count']],
     paint: {
         'circle-color': '#da1122',
         'circle-radius': 4,

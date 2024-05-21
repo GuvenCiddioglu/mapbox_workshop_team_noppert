@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Batignolles-Monceau",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Bourse",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Buttes-Chaumont",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Buttes-Montmartre",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Élysée",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Entrepôt",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Gobelins",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Hôtel-de-Ville",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Louvre",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Luxembourg",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Ménilmontant",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Observatoire",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Opéra",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Palais-Bourbon",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Panthéon",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Passy",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Popincourt",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Reuilly",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Temple",
+    "neighbourhoodGroup": null
+  },
+  {
+    "name": "Vaugirard",
+    "neighbourhoodGroup": null
+  }
+]

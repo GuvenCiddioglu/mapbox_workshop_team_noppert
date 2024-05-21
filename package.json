@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@turf/turf": "^6.5.0",
+    "@types/geojson": "^7946.0.14",
     "mapbox-gl": "^3.3.0",
     "vue": "^3.4.21"
   },
