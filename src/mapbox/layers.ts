@@ -14,7 +14,6 @@ export const listingLayer: AnyLayer = {
     id: "listings",
     type: "circle",
     source: "listings",
-    filter: ['!', ['has', 'point_count']],
     paint: {
         'circle-color': '#da1122',
         'circle-radius': 4,
