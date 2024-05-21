@@ -173,3 +173,63 @@ const boundsToNeighbourhood = (neighbourhood: string) => {
     }
 }
 ```
+
+# Json naar Geojson
+Frontend:
+``` typescript
+let json = [
+        {
+          "lang": 45.345345345,
+          "long": 8.324234235,
+          "id": 1
+        }
+      ]
+
+      // Return the filtered data as a GeoJSON object
+      return {
+        type: 'FeatureCollection',
+        features: json.map(item => ({
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [item.long, item.lang],
+            },
+            properties: {
+                id: item.id
+            },
+        })),
+      }
+```
+
+
+C# ASP.NET API:
+``` C#
+public class ListingCoordinatesDTO
+{
+    public long Id { get; set; }
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
+}
+
+public string ConvertToGeoJson(List<ListingCoordinatesDTO> locations)
+{
+    var model = new FeatureCollection();
+    foreach (var item in locations)
+    {
+        var location = new Point(new Position(item.Latitude, item.Longitude));
+        var props = new Dictionary<string, object>
+        {
+            {"id", item.Id.ToString()},
+            {"latitude", item.Latitude},
+            {"longitude", item.Longitude},
+            {"neighbourhood", item.Neighbourhood}
+        };
+        var feature = new Feature(location, props);
+        model.Features.Add(feature);
+    }
+
+    var json = JsonConvert.SerializeObject(model);
+    return json;
+}
+
+```
