@@ -34,7 +34,7 @@ map.value?.addSource("listings", {
 
 map.value?.addSource("neighbourhoods", {
     type: "vector",
-    url: "mapbox://username.clvgc35v20ntc1nlqicdpzzv5-89ayz"
+    url: "mapbox://mapbox://{Tileset ID}"
 })
 ```
 

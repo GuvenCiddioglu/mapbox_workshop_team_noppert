@@ -42,7 +42,7 @@
 
         map.value?.addSource("neighbourhoods", {
             type: "vector",
-            url: "mapbox://username.clvgc35v20ntc1nlqicdpzzv5-89ayz"
+            url: "mapbox://{Tileset ID}"
         })
 
         // (3) Voeg hier je layers toe & (7) Pas nog meer layers toe
