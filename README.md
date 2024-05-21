@@ -33,8 +33,8 @@ map.value?.addSource("listings", {
 })
 
 map.value?.addSource("neighbourhoods", {
-    type: "geojson",
-    data: "https://raw.githubusercontent.com/blackmad/neighborhoods/master/paris.geojson"
+    type: "vector",
+    data: "mapbox://{Tileset ID}"
 })
 ```
 
@@ -91,7 +91,7 @@ if (!neighbourhood) {
 };
 
 // Pas het filter toe op de buurt en update de kaart met de gefilterde gegevens
-map.value?.setFilter("neighbourhoods", ["==", "name", neighbourhood])
+map.value?.setFilter("neighbourhoods", ["==", "neighbourhood", neighbourhood])
 mapSource.setData({
   type: "FeatureCollection",
   features: result
@@ -153,7 +153,8 @@ Code snippet: 9
 const boundsToNeighbourhood = (neighbourhood: string) => {
     // Filter de features van de buurt
     const filteredFeatures = map.value?.querySourceFeatures("neighbourhoods", {
-        filter: ["==", "name", neighbourhood],
+        sourceLayer: "Neighbourhood_Paris",
+        filter: ["==", "neighbourhood", neighbourhood],
     });
 
     // Controleer of er features zijn gevonden

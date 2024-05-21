@@ -4,6 +4,7 @@ export const neighbourhoodLayer: AnyLayer = {
     id: "neighbourhoods",
     type: "fill",
     source: "neighbourhoods",
+    "source-layer": "Neighbourhood_Paris",
     paint: {
         "fill-color": "#088",
         "fill-opacity": 0.4,
