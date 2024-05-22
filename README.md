@@ -199,6 +199,7 @@ const boundsToNeighbourhood = (neighbourhood: string) => {
 # Json naar Geojson
 Frontend:
 ``` typescript
+const jsonToGeojson = () => {
 let json = [
         {
           "lang": 45.345345345,
@@ -221,6 +222,7 @@ let json = [
             },
         })),
       }
+}
 ```
 
 
